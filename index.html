@@ -1,164 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ================= META ================= -->
   <meta charset="UTF-8">
+  <title>Happy Holi 🌸</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HOLI X • Extreme Festival Experience</title>
-
-  <!-- ================= SEO ================= -->
-  <meta name="description" content="Extreme Holi Festival Website with colors, fireworks, music and interactive effects">
-  <meta name="keywords" content="Holi, Festival, Colors, Holi Website, Celebration">
-  <meta name="author" content="Yash">
-
-  <!-- ================= THEME ================= -->
-  <meta name="theme-color" content="#ff0080">
-
-  <!-- ================= CSS ================= -->
+  <meta name="description" content="Warm Holi wishes for everyone">
   <link rel="stylesheet" href="style.css">
-
-  <!-- ================= PRECONNECT ================= -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
-
 <body>
 
-<!-- =================================================
-  LOADER
-================================================= -->
-<div id="loader">
-  <div class="loader-ring"></div>
-  <h2>Loading Colors…</h2>
-</div>
+  <div class="wrapper">
+    <div class="card">
+      <h1>Happy Holi 🌸</h1>
+      <p class="message">
+        May this Holi bring peace, happiness, good health  
+        and positive colors into your life.
+      </p>
 
-<!-- =================================================
-  BACKGROUND CANVAS (ENGINE)
-================================================= -->
-<canvas id="fxCanvas"></canvas>
+      <p class="quote">
+        “Let us celebrate the festival of colors with love and harmony.”
+      </p>
 
-<!-- =================================================
-  AUDIO
-================================================= -->
-<audio id="bgMusic" loop>
-  <source src="holi.mp3" type="audio/mpeg">
-</audio>
+      <p class="from" id="fromText">— Warm wishes</p>
 
-<!-- =================================================
-  HEADER / HERO
-================================================= -->
-<header id="hero">
-  <div class="hero-inner">
-    <h1>🎨 HAPPY HOLI 🎨</h1>
-    <p class="tagline">Festival of Colors • Joy • Energy • Celebration</p>
-    <p id="countdown">Loading countdown…</p>
-  </div>
-</header>
+      <input type="text" id="nameInput" placeholder="Enter your name (optional)">
+      <button id="setName">Set Name</button>
 
-<!-- =================================================
-  MAIN CONTROL PANEL
-================================================= -->
-<section id="control-panel">
-  <h2>🎛 Control Panel</h2>
-
-  <div class="controls-grid">
-    <button id="btnColors">Play Colors 🌈</button>
-    <button id="btnMusic">Toggle Music 🎵</button>
-    <button id="btnSmoke">Color Smoke 🌀</button>
-    <button id="btnFireworks">Fireworks 🎆</button>
-    <button id="btnRain">Gulal Rain 🎉</button>
-    <button id="btnShare">Share 📲</button>
+      <button class="share" id="shareBtn">Share this greeting</button>
+    </div>
   </div>
 
-  <div class="name-section">
-    <input type="text" id="nameInput" placeholder="Enter your name">
-    <button id="setName">Set Name</button>
-  </div>
-
-  <p class="from-text" id="fromText">— From Yash</p>
-</section>
-
-<!-- =================================================
-  EXPERIENCE SECTIONS
-================================================= -->
-<section class="experience">
-  <h2>✨ Holi Experience</h2>
-  <p>
-    This interactive Holi experience is designed to bring joy,
-    colors, music and celebration together in one place.
-  </p>
-</section>
-
-<section class="experience alt">
-  <h2>🎆 Visual Effects</h2>
-  <ul>
-    <li>Real-time particle engine</li>
-    <li>Fireworks physics</li>
-    <li>Cursor color trails</li>
-    <li>Dynamic background colors</li>
-  </ul>
-</section>
-
-<section class="experience">
-  <h2>🎵 Music & Energy</h2>
-  <p>
-    Enjoy background Holi music with smooth fade,
-    responsive visuals and festival vibes.
-  </p>
-</section>
-
-<!-- =================================================
-  MINI GAME AREA
-================================================= -->
-<section id="game">
-  <h2>🎮 Mini Holi Game</h2>
-  <p>Tap / Click anywhere to score points with color bursts!</p>
-  <div id="scoreBox">
-    Score: <span id="score">0</span>
-  </div>
-</section>
-
-<!-- =================================================
-  GALLERY (PLACEHOLDER)
-================================================= -->
-<section id="gallery">
-  <h2>📸 Holi Moments</h2>
-
-  <div class="gallery-grid">
-    <div class="g-card">Color Splash</div>
-    <div class="g-card">Festival Joy</div>
-    <div class="g-card">Friends & Fun</div>
-    <div class="g-card">Gulal Vibes</div>
-    <div class="g-card">Dance & Music</div>
-    <div class="g-card">Pure Energy</div>
-  </div>
-</section>
-
-<!-- =================================================
-  INFO / ABOUT
-================================================= -->
-<section id="about">
-  <h2>ℹ️ About This Project</h2>
-  <p>
-    This Holi website is built as an extreme-level front-end project
-    using pure HTML, CSS and JavaScript.
-  </p>
-  <p>
-    No frameworks. No libraries. Just raw performance and creativity.
-  </p>
-</section>
-
-<!-- =================================================
-  FOOTER
-================================================= -->
-<footer>
-  <p>Made with ❤️ for Holi</p>
-  <p>© 2026 • Holi X Experience</p>
-</footer>
-
-<!-- =================================================
-  SCRIPTS
-================================================= -->
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
