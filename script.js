@@ -6,17 +6,19 @@ const shareBtn = document.getElementById("shareBtn");
 setName.onclick = () => {
   const name = nameInput.value.trim();
   if(name){
-    fromText.textContent = "— Warm wishes from " + name;
+    fromText.textContent = "— Best wishes from " + name;
   }
 };
 
 const params = new URLSearchParams(location.search);
 if(params.get("name")){
-  fromText.textContent = "— Warm wishes from " + params.get("name");
+  fromText.textContent = "— Best wishes from " + params.get("name");
 }
 
 shareBtn.onclick = () => {
-  const text = encodeURIComponent("🌸 Happy Holi! Sending you warm wishes 🌸");
+  const text = encodeURIComponent(
+    "🌸 Happy Holi! Wishing you happiness, peace and beautiful moments 🌸"
+  );
   const url = encodeURIComponent(location.href);
   window.open(`https://wa.me/?text=${text}%0A${url}`);
 };
