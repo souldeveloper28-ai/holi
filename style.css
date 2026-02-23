@@ -1,367 +1,85 @@
-/* =========================================================
-   RESET & ROOT VARIABLES
-========================================================= */
-:root{
-  --pink:#ff0080;
-  --yellow:#ffc107;
-  --cyan:#00e5ff;
-  --purple:#7c4dff;
-  --bg-dark:#050505;
-  --glass:rgba(255,255,255,0.15);
-  --blur:blur(14px);
-  --radius-xl:28px;
-  --radius-lg:20px;
-  --radius-md:14px;
-  --shadow-xl:0 40px 80px rgba(0,0,0,0.45);
-  --shadow-lg:0 20px 40px rgba(0,0,0,0.35);
-  --transition:0.35s ease;
-}
-
-*,
-*::before,
-*::after{
+*{
   margin:0;
   padding:0;
   box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto;
 }
 
 body{
   min-height:100vh;
-  background:radial-gradient(circle at top,#111,#000);
-  color:#fff;
-  font-family:system-ui,-apple-system,Segoe UI,Roboto;
-  overflow-x:hidden;
-}
-
-/* =========================================================
-   CANVAS BACKGROUND
-========================================================= */
-#fxCanvas{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-}
-
-/* =========================================================
-   LOADER
-========================================================= */
-#loader{
-  position:fixed;
-  inset:0;
-  background:#000;
+  background: linear-gradient(135deg,#fdeff9,#ecf2ff,#e0f7fa);
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
-  z-index:9999;
-  animation:fadeOut 1s ease forwards;
+  color:#333;
 }
 
-.loader-ring{
-  width:80px;
-  height:80px;
-  border:8px solid #222;
-  border-top:8px solid var(--pink);
-  border-radius:50%;
-  animation:spin 1s linear infinite;
+.wrapper{
+  padding:20px;
+}
+
+.card{
+  background:#ffffffcc;
+  backdrop-filter: blur(10px);
+  max-width:420px;
+  width:100%;
+  padding:35px 30px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+}
+
+h1{
+  font-size:2.2rem;
+  color:#e91e63;
   margin-bottom:15px;
 }
 
-#loader h2{
+.message{
   font-size:1rem;
-  opacity:0.85;
-  letter-spacing:1px;
+  line-height:1.6;
+  margin-bottom:15px;
 }
 
-@keyframes spin{
-  to{transform:rotate(360deg);}
-}
-@keyframes fadeOut{
-  to{opacity:0;visibility:hidden;}
-}
-
-/* =========================================================
-   HERO SECTION
-========================================================= */
-#hero{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:40px 20px;
-  background:
-    radial-gradient(circle at 20% 20%,rgba(255,0,128,0.25),transparent 40%),
-    radial-gradient(circle at 80% 30%,rgba(0,229,255,0.25),transparent 45%);
-}
-
-.hero-inner{
-  background:var(--glass);
-  backdrop-filter:var(--blur);
-  border-radius:var(--radius-xl);
-  padding:45px 35px;
-  box-shadow:var(--shadow-xl);
-  max-width:620px;
-  width:100%;
-}
-
-.hero-inner h1{
-  font-size:3rem;
-  letter-spacing:3px;
-  background:linear-gradient(90deg,var(--pink),var(--yellow),var(--cyan));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-}
-
-.tagline{
-  margin-top:10px;
-  font-size:1rem;
-  opacity:0.9;
-}
-
-#countdown{
-  margin-top:18px;
-  font-weight:700;
-  letter-spacing:1px;
-}
-
-/* =========================================================
-   CONTROL PANEL
-========================================================= */
-#control-panel{
-  margin:-80px auto 60px;
-  width:90%;
-  max-width:700px;
-  background:var(--glass);
-  backdrop-filter:var(--blur);
-  border-radius:var(--radius-xl);
-  padding:35px;
-  box-shadow:var(--shadow-lg);
-}
-
-#control-panel h2{
-  text-align:center;
+.quote{
+  font-style:italic;
+  opacity:0.8;
   margin-bottom:20px;
-  letter-spacing:2px;
 }
 
-.controls-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:15px;
+.from{
+  margin-bottom:20px;
+  font-weight:600;
 }
 
-.controls-grid button{
-  padding:14px 18px;
-  border:none;
-  border-radius:999px;
-  font-weight:800;
-  font-size:0.95rem;
-  cursor:pointer;
-  background:linear-gradient(135deg,#fff,#eee);
-  color:#111;
-  transition:var(--transition);
-}
-
-.controls-grid button:hover{
-  transform:translateY(-4px) scale(1.04);
-  box-shadow:0 12px 30px rgba(0,0,0,0.35);
-}
-
-.name-section{
-  margin-top:25px;
-  display:flex;
-  gap:10px;
-}
-
-.name-section input{
-  flex:1;
-  padding:14px;
-  border-radius:999px;
-  border:none;
-  outline:none;
-  font-size:0.95rem;
-}
-
-.name-section button{
-  padding:14px 20px;
-  border:none;
-  border-radius:999px;
-  font-weight:700;
-  cursor:pointer;
-  background:linear-gradient(135deg,var(--pink),var(--yellow));
-  color:#000;
-}
-
-.from-text{
-  text-align:center;
-  margin-top:18px;
-  opacity:0.85;
-}
-
-/* =========================================================
-   EXPERIENCE SECTIONS
-========================================================= */
-.experience{
-  max-width:900px;
-  margin:60px auto;
-  padding:0 25px;
-  text-align:center;
-}
-
-.experience h2{
-  font-size:2rem;
+input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #ddd;
   margin-bottom:10px;
 }
 
-.experience p,
-.experience li{
-  opacity:0.85;
-  font-size:1rem;
-  line-height:1.6;
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:600;
 }
 
-.experience ul{
-  list-style:none;
-  margin-top:15px;
+#setName{
+  background:#e91e63;
+  color:white;
+  margin-bottom:10px;
 }
 
-.experience li{
-  margin:8px 0;
+.share{
+  background:#4caf50;
+  color:white;
 }
 
-.experience.alt{
-  background:linear-gradient(135deg,rgba(255,0,128,0.15),rgba(0,229,255,0.15));
-  border-radius:var(--radius-lg);
-  padding:40px 25px;
-}
-
-/* =========================================================
-   MINI GAME
-========================================================= */
-#game{
-  max-width:600px;
-  margin:80px auto;
-  text-align:center;
-  background:var(--glass);
-  backdrop-filter:var(--blur);
-  border-radius:var(--radius-xl);
-  padding:40px;
-  box-shadow:var(--shadow-lg);
-}
-
-#scoreBox{
-  margin-top:20px;
-  font-size:1.2rem;
-  font-weight:800;
-}
-
-/* =========================================================
-   GALLERY
-========================================================= */
-#gallery{
-  max-width:1100px;
-  margin:80px auto;
-  padding:0 25px;
-}
-
-#gallery h2{
-  text-align:center;
-  margin-bottom:25px;
-}
-
-.gallery-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  gap:20px;
-}
-
-.g-card{
-  height:140px;
-  border-radius:var(--radius-lg);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:800;
-  background:linear-gradient(135deg,var(--pink),var(--yellow),var(--cyan));
-  color:#000;
-  transition:var(--transition);
-}
-
-.g-card:hover{
-  transform:scale(1.08) rotate(-2deg);
-}
-
-/* =========================================================
-   ABOUT
-========================================================= */
-#about{
-  max-width:900px;
-  margin:100px auto;
-  padding:0 25px;
-  text-align:center;
-}
-
-#about h2{
-  margin-bottom:15px;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-footer{
-  padding:40px 20px;
-  text-align:center;
-  background:#000;
-  opacity:0.9;
-}
-
-/* =========================================================
-   EFFECT CLASSES (USED BY JS)
-========================================================= */
-.splash{
-  position:fixed;
-  width:18px;
-  height:18px;
-  border-radius:50%;
-  pointer-events:none;
-  animation:splash 0.9s ease-out forwards;
-}
-
-@keyframes splash{
-  to{
-    transform:scale(14);
-    opacity:0;
-  }
-}
-
-.gulal{
-  position:fixed;
-  top:-20px;
-  width:12px;
-  height:12px;
-  border-radius:50%;
-  animation:fall linear forwards;
-}
-
-@keyframes fall{
-  to{transform:translateY(120vh);}
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-@media(max-width:768px){
-  .hero-inner h1{font-size:2.2rem}
-  #control-panel{padding:25px}
-}
-
-@media(max-width:480px){
-  .controls-grid{
-    grid-template-columns:1fr;
-  }
+button:active{
+  transform:scale(0.98);
 }
