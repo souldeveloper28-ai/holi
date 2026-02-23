@@ -1,89 +1,305 @@
-const colorBtn = document.getElementById("colorBtn");
-const musicBtn = document.getElementById("musicBtn");
-const rainBtn  = document.getElementById("rainBtn");
-const music    = document.getElementById("music");
+/* =========================================================
+   HOLI X — EXTREME FESTIVAL ENGINE
+   Author: Yash
+   Engine Type: Pure JS (No Library)
+========================================================= */
+
+/* =========================================================
+   GLOBAL SELECTORS
+========================================================= */
+const canvas = document.getElementById("fxCanvas");
+const ctx = canvas.getContext("2d");
+
+const loader = document.getElementById("loader");
+const bgMusic = document.getElementById("bgMusic");
+
+const btnColors = document.getElementById("btnColors");
+const btnMusic = document.getElementById("btnMusic");
+const btnSmoke = document.getElementById("btnSmoke");
+const btnFireworks = document.getElementById("btnFireworks");
+const btnRain = document.getElementById("btnRain");
+const btnShare = document.getElementById("btnShare");
 
 const nameInput = document.getElementById("nameInput");
-const setName   = document.getElementById("setName");
-const fromText  = document.getElementById("fromText");
+const setNameBtn = document.getElementById("setName");
+const fromText = document.getElementById("fromText");
 
-/* ===== COLOR CHANGE ===== */
-colorBtn.onclick = ()=>{
-  document.body.style.background =
-   `linear-gradient(135deg,
-    hsl(${Math.random()*360},100%,60%),
-    hsl(${Math.random()*360},100%,60%),
-    hsl(${Math.random()*360},100%,60%))`;
-};
+const countdownEl = document.getElementById("countdown");
+const scoreEl = document.getElementById("score");
 
-/* ===== MUSIC ===== */
-let playing=false;
-musicBtn.onclick=()=>{
-  playing ? music.pause() : music.play();
-  playing=!playing;
-};
+/* =========================================================
+   CANVAS RESIZE
+========================================================= */
+function resizeCanvas(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
-/* ===== SPLASH EFFECT ===== */
-document.addEventListener("click",e=>{
-  const s=document.createElement("span");
-  s.className="splash";
-  s.style.left=e.clientX+"px";
-  s.style.top=e.clientY+"px";
-  s.style.background=`hsl(${Math.random()*360},100%,60%)`;
-  document.body.appendChild(s);
-  setTimeout(()=>s.remove(),900);
+/* =========================================================
+   LOADER CONTROL
+========================================================= */
+window.addEventListener("load", ()=>{
+  setTimeout(()=>{
+    loader.style.display = "none";
+  },1500);
 });
 
-/* ===== GULAL RAIN ===== */
-rainBtn.onclick=()=>{
-  for(let i=0;i<60;i++){
-    const g=document.createElement("div");
-    g.className="gulal";
-    g.style.left=Math.random()*100+"vw";
-    g.style.background=`hsl(${Math.random()*360},100%,60%)`;
-    g.style.animationDuration=2+Math.random()*3+"s";
-    document.body.appendChild(g);
-    setTimeout(()=>g.remove(),5000);
-  }
+/* =========================================================
+   ENGINE CONFIG
+========================================================= */
+const ENGINE = {
+  gravity: 0.12,
+  friction: 0.985,
+  maxParticles: 1400,
+  smokeEnabled: true,
+  musicPlaying: false,
+  score: 0
 };
 
-/* ===== NAME SET ===== */
-setName.onclick=()=>{
-  if(nameInput.value.trim()!==""){
-    fromText.textContent="— From "+nameInput.value;
-  }
-};
-
-/* ===== CANVAS BACKGROUND ===== */
-const canvas=document.getElementById("canvas");
-const ctx=canvas.getContext("2d");
-canvas.width=innerWidth;
-canvas.height=innerHeight;
-
-let particles=[];
-for(let i=0;i<120;i++){
-  particles.push({
-    x:Math.random()*canvas.width,
-    y:Math.random()*canvas.height,
-    r:Math.random()*3+1,
-    dx:(Math.random()-0.5),
-    dy:(Math.random()-0.5),
-    c:`hsl(${Math.random()*360},100%,60%)`
-  });
+/* =========================================================
+   UTILITY FUNCTIONS
+========================================================= */
+function rand(min,max){
+  return Math.random()*(max-min)+min;
 }
 
+function randomColor(){
+  return `hsl(${Math.random()*360},100%,60%)`;
+}
+
+/* =========================================================
+   PARTICLE CLASS
+========================================================= */
+class Particle{
+  constructor(x,y,size,color,vx,vy,life){
+    this.x=x;
+    this.y=y;
+    this.size=size;
+    this.color=color;
+    this.vx=vx;
+    this.vy=vy;
+    this.life=life;
+  }
+
+  update(){
+    this.vy += ENGINE.gravity;
+    this.vx *= ENGINE.friction;
+    this.vy *= ENGINE.friction;
+    this.x += this.vx;
+    this.y += this.vy;
+    this.life--;
+  }
+
+  draw(){
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fillStyle=this.color;
+    ctx.fill();
+  }
+}
+
+/* =========================================================
+   PARTICLE STORAGE
+========================================================= */
+const particles = [];
+
+/* =========================================================
+   EMITTER
+========================================================= */
+function emitParticles(x,y,count,type="normal"){
+  for(let i=0;i<count;i++){
+    if(particles.length > ENGINE.maxParticles) break;
+
+    let size = type==="firework" ? rand(2,4) : rand(1,3);
+    let speed = type==="firework" ? rand(-8,8) : rand(-4,4);
+
+    particles.push(
+      new Particle(
+        x,
+        y,
+        size,
+        randomColor(),
+        speed,
+        speed,
+        type==="firework" ? 120 : 80
+      )
+    );
+  }
+}
+
+/* =========================================================
+   FIREWORK EXPLOSION
+========================================================= */
+function firework(x,y){
+  emitParticles(x,y,180,"firework");
+}
+
+/* =========================================================
+   GULAL RAIN
+========================================================= */
+function gulalRain(){
+  for(let i=0;i<120;i++){
+    particles.push(
+      new Particle(
+        rand(0,canvas.width),
+        -20,
+        rand(2,4),
+        randomColor(),
+        rand(-1,1),
+        rand(2,5),
+        200
+      )
+    );
+  }
+}
+
+/* =========================================================
+   COLOR BACKGROUND ANIMATION
+========================================================= */
+function randomBackground(){
+  document.body.style.background =
+   `linear-gradient(135deg,
+     ${randomColor()},
+     ${randomColor()},
+     ${randomColor()})`;
+}
+
+/* =========================================================
+   MUSIC CONTROL
+========================================================= */
+btnMusic.addEventListener("click",()=>{
+  if(!ENGINE.musicPlaying){
+    bgMusic.play();
+    ENGINE.musicPlaying=true;
+  }else{
+    bgMusic.pause();
+    ENGINE.musicPlaying=false;
+  }
+});
+
+/* =========================================================
+   BUTTON EVENTS
+========================================================= */
+btnColors.onclick = randomBackground;
+
+btnSmoke.onclick = ()=>{
+  ENGINE.smokeEnabled = !ENGINE.smokeEnabled;
+};
+
+btnFireworks.onclick = ()=>{
+  firework(rand(100,canvas.width-100),rand(100,canvas.height/2));
+};
+
+btnRain.onclick = gulalRain;
+
+btnShare.onclick = ()=>{
+  const msg = encodeURIComponent("🎨 Happy Holi! Check this extreme Holi website 🌈");
+  const url = encodeURIComponent(location.href);
+  window.open(`https://wa.me/?text=${msg}%0A${url}`);
+};
+
+/* =========================================================
+   NAME SET
+========================================================= */
+setNameBtn.onclick = ()=>{
+  if(nameInput.value.trim()!==""){
+    fromText.textContent = "— From " + nameInput.value;
+  }
+};
+
+/* =========================================================
+   URL NAME AUTO
+========================================================= */
+const params = new URLSearchParams(location.search);
+if(params.get("name")){
+  fromText.textContent = "— From " + params.get("name");
+}
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+const holiDate = new Date("March 14, 2026 00:00:00").getTime();
+
+setInterval(()=>{
+  const now = Date.now();
+  const diff = holiDate - now;
+
+  if(diff <= 0){
+    countdownEl.textContent = "🎉 HAPPY HOLI 🎉";
+    return;
+  }
+
+  const d = Math.floor(diff/(1000*60*60*24));
+  const h = Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  const m = Math.floor((diff%(1000*60*60))/(1000*60));
+
+  countdownEl.textContent = `Holi in ${d}d ${h}h ${m}m`;
+},1000);
+
+/* =========================================================
+   MINI GAME (CLICK TO SCORE)
+========================================================= */
+window.addEventListener("click",(e)=>{
+  ENGINE.score++;
+  scoreEl.textContent = ENGINE.score;
+  emitParticles(e.clientX,e.clientY,50);
+});
+
+/* =========================================================
+   CURSOR SMOKE
+========================================================= */
+window.addEventListener("mousemove",(e)=>{
+  if(!ENGINE.smokeEnabled) return;
+  emitParticles(e.clientX,e.clientY,6);
+});
+
+/* =========================================================
+   MAIN LOOP
+========================================================= */
 function animate(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  particles.forEach(p=>{
-    ctx.beginPath();
-    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle=p.c;
-    ctx.fill();
-    p.x+=p.dx;
-    p.y+=p.dy;
-    if(p.x<0||p.x>canvas.width) p.dx*=-1;
-    if(p.y<0||p.y>canvas.height) p.dy*=-1;
-  });
+
+  for(let i=particles.length-1;i>=0;i--){
+    const p = particles[i];
+    p.update();
+    p.draw();
+
+    if(p.life<=0 || p.y>canvas.height+50){
+      particles.splice(i,1);
+    }
+  }
+
   requestAnimationFrame(animate);
 }
+
 animate();
+
+/* =========================================================
+   PERFORMANCE ADAPTATION
+========================================================= */
+let frames=0;
+let last=performance.now();
+
+setInterval(()=>{
+  const now=performance.now();
+  const fps = Math.round(frames/((now-last)/1000));
+  frames=0;
+  last=now;
+
+  if(fps<40){
+    ENGINE.maxParticles = Math.max(400,ENGINE.maxParticles-200);
+  }else if(fps>55){
+    ENGINE.maxParticles = Math.min(1800,ENGINE.maxParticles+100);
+  }
+},2000);
+
+(function fpsCounter(){
+  frames++;
+  requestAnimationFrame(fpsCounter);
+})();
+
+/* =========================================================
+   ENGINE END
+========================================================= */
