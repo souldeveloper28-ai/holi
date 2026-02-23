@@ -1,42 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Holi</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Warm and beautiful Holi wishes for everyone">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Happy Holi 🎨</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="bg"></div>
+<canvas id="canvas"></canvas>
 
-  <main class="card">
-    <h1>Happy Holi</h1>
+<header>
+  <h1>🎉 HAPPY HOLI 🎉</h1>
+  <p>Wishing you colors of joy & happiness</p>
+</header>
 
-    <p class="main-text">
-      May this festival of colors fill your life with happiness,  
-      peace, good health and beautiful moments.
-    </p>
+<section class="card">
+  <h2>Holi Wishes For You 🌈</h2>
+  <p>
+    May this Holi fill your life with happiness,
+    love and bright colors.
+  </p>
 
-    <p class="sub-text">
-      Let us celebrate Holi with love, respect and togetherness.
-    </p>
+  <div class="buttons">
+    <button id="colorBtn">Play With Colors 🎨</button>
+    <button id="musicBtn">Toggle Music 🎶</button>
+    <button id="rainBtn">Gulal Rain 🌸</button>
+    <button id="shareBtn">Send on WhatsApp 💚</button>
+  </div>
 
-    <div class="name-box">
-      <input type="text" id="nameInput" placeholder="Your name (optional)">
-      <button id="setName">Add Name</button>
-    </div>
+  <div class="nameBox">
+    <input type="text" id="nameInput" placeholder="Enter Your Name">
+    <button id="setName">Set Name</button>
+  </div>
 
-    <p class="from" id="fromText">— Best wishes</p>
+  <span class="fromText" id="fromText">— From Yash</span>
+</section>
 
-    <button class="share-btn" id="shareBtn">Share Holi Wishes</button>
+<footer>
+  <p>✨ Share & spread Holi happiness ✨</p>
+</footer>
 
-    <footer>
-      Built by Yash
-    </footer>
-  </main>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
