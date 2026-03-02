@@ -1,80 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>A Special Holi Surprise</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<div class="bg-animation"></div>
+<audio id="bgm" src="music.mp3" loop></audio>
 
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<div class="app">
 
-<div class="container">
-
-<div class="screen active" id="s1">
-  <div class="card glass">
+<!-- SCREEN 1 -->
+<section class="screen active">
+  <div class="card">
     <h1>Hii Cutie ❤️</h1>
-    <p>Is Holi maine tumhare liye ek 3D surprise banaya hai...</p>
+    <p>Is Holi maine tumhare liye kuch special banaya hai…</p>
     <button onclick="next()">Open Surprise ✨</button>
   </div>
-</div>
+</section>
 
-<div class="screen" id="s2">
-  <div class="card glass">
+<!-- SCREEN 2 -->
+<section class="screen">
+  <div class="card">
     <h2>Color My Heart 🎨</h2>
-    <div class="heart3d" id="heart"></div>
+    <div class="heart" id="heart"></div>
     <div class="colors">
-      <span style="background:#ff4d6d" onclick="fill('#ff4d6d')"></span>
-      <span style="background:#ffd166" onclick="fill('#ffd166')"></span>
-      <span style="background:#06d6a0" onclick="fill('#06d6a0')"></span>
-      <span style="background:#9b5de5" onclick="fill('#9b5de5')"></span>
+      <span style="--c:#ff6b6b" onclick="fill('#ff6b6b')"></span>
+      <span style="--c:#ffd166" onclick="fill('#ffd166')"></span>
+      <span style="--c:#06d6a0" onclick="fill('#06d6a0')"></span>
+      <span style="--c:#9b5de5" onclick="fill('#9b5de5')"></span>
     </div>
-    <button onclick="next()">Next ➜</button>
+    <button onclick="next()">Next →</button>
   </div>
-</div>
+</section>
 
-<div class="screen" id="s3">
-  <div class="card glass">
-    <h2>Har color tumhari yaad 💖</h2>
-    <div class="photo-stack">
-      <img src="assets/img1.jpg">
-      <img src="assets/img2.jpg">
+<!-- SCREEN 3 -->
+<section class="screen">
+  <div class="card">
+    <h2>Every color reminds me of you 💖</h2>
+    <div class="photos">
+      <img src="assets/img1.jpg"/>
+      <img src="assets/img2.jpg"/>
     </div>
-    <button onclick="next()">Continue ➜</button>
+    <button onclick="next()">Continue →</button>
   </div>
-</div>
+</section>
 
-<div class="screen" id="s4">
-  <div class="card glass flip-card" onclick="this.classList.toggle('flipped')">
-    <div class="flip-inner">
-      <div class="flip-front">
-        <h2>Tap to Open 💌</h2>
-      </div>
-      <div class="flip-back">
-        <p>
-        Jaise Holi ke colors bright hote hain,  
-        waise hi tum meri life ko bright kar dete ho.  
-        Happy Holi meri favorite person ❤️
-        </p>
-      </div>
-    </div>
+<!-- SCREEN 4 -->
+<section class="screen">
+  <div class="card">
+    <h2>Just for You 💌</h2>
+    <p>
+      Jaise Holi ke colors bright hote hain,  
+      waise hi tum meri life ko bright bana dete ho.  
+      Tum meri comfort ho, meri favorite feeling ❤️
+    </p>
+    <strong>Always Yours!</strong>
+    <button onclick="next()">One last thing →</button>
   </div>
-  <button onclick="next()">Last ➜</button>
-</div>
+</section>
 
-<div class="screen" id="s5">
-  <div class="card glass">
-    <h2>Virtual Hug 🤗</h2>
-    <div class="hug-circle" id="hugCircle">Hold</div>
+<!-- SCREEN 5 -->
+<section class="screen">
+  <div class="card">
+    <h2>Sending You a Virtual Hug 🤗</h2>
+    <div class="hug" id="hug">Hold</div>
     <p id="hugText"></p>
   </div>
-</div>
+</section>
 
 </div>
 
@@ -82,4 +78,4 @@
 
 <script src="script.js"></script>
 </body>
-  </html>
+</html>
