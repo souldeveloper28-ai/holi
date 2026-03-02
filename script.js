@@ -1,27 +1,23 @@
-let current=1;
-const music=document.getElementById("bgMusic");
+let i=0;
+const screens=document.querySelectorAll(".screen");
+const music=document.getElementById("bgm");
 
 function next(){
-document.getElementById("s"+current).classList.remove("active");
-current++;
-document.getElementById("s"+current).classList.add("active");
-music.play();
+  screens[i].classList.remove("active");
+  i++;
+  screens[i].classList.add("active");
+  music.play();
 }
 
-function fill(color){
-document.getElementById("heart").style.background=color;
+function fill(c){
+  document.getElementById("heart").style.background=c;
 }
 
-const hug=document.getElementById("hugCircle");
-const hugText=document.getElementById("hugText");
-let timer;
+const hug=document.getElementById("hug");
+const text=document.getElementById("hugText");
+let t;
 
 hug.addEventListener("mousedown",()=>{
-timer=setTimeout(()=>{
-hugText.innerText="Hug Received! Happy Holi ❤️";
-},1500);
+  t=setTimeout(()=>text.innerText="Hug Received! Happy Holi ❤️",1200);
 });
-
-hug.addEventListener("mouseup",()=>{
-clearTimeout(timer);
-});
+hug.addEventListener("mouseup",()=>clearTimeout(t));
