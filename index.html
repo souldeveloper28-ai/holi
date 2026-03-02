@@ -2,65 +2,84 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Holi 🎨</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<title>A Special Holi Surprise</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- ===== BACKGROUND CANVAS ===== -->
-<canvas id="canvas"></canvas>
+<div class="bg-animation"></div>
 
-<!-- ===== MUSIC ===== -->
-<audio id="music" loop>
-  <source src="holi.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ===== HEADER ===== -->
-<header>
-  <h1>🎉 HAPPY HOLI 🎉</h1>
-  <p>Festival of Colors • Joy • Masti • Dosti</p>
-</header>
+<div class="container">
 
-<!-- ===== MAIN CARD ===== -->
-<section class="card">
-  <h2>Celebrate Holi With Colors</h2>
-  <p>
-    Let this Holi fill your life with vibrant colors,
-    happiness, love and unforgettable memories.
-  </p>
-
-  <div class="buttons">
-    <button id="colorBtn">Play With Colors 🎨</button>
-    <button id="musicBtn">Toggle Music 🎶</button>
-    <button id="rainBtn">Gulal Rain 🌈</button>
+<div class="screen active" id="s1">
+  <div class="card glass">
+    <h1>Hii Cutie ❤️</h1>
+    <p>Is Holi maine tumhare liye ek 3D surprise banaya hai...</p>
+    <button onclick="next()">Open Surprise ✨</button>
   </div>
+</div>
 
-  <div class="nameBox">
-    <input type="text" id="nameInput" placeholder="Enter Your Name">
-    <button id="setName">Set Name</button>
+<div class="screen" id="s2">
+  <div class="card glass">
+    <h2>Color My Heart 🎨</h2>
+    <div class="heart3d" id="heart"></div>
+    <div class="colors">
+      <span style="background:#ff4d6d" onclick="fill('#ff4d6d')"></span>
+      <span style="background:#ffd166" onclick="fill('#ffd166')"></span>
+      <span style="background:#06d6a0" onclick="fill('#06d6a0')"></span>
+      <span style="background:#9b5de5" onclick="fill('#9b5de5')"></span>
+    </div>
+    <button onclick="next()">Next ➜</button>
   </div>
+</div>
 
-  <span class="fromText" id="fromText">— From Yash</span>
-</section>
-
-<!-- ===== GALLERY ===== -->
-<section class="gallery">
-  <h2>Holi Moments</h2>
-  <div class="images">
-    <div class="img i1"></div>
-    <div class="img i2"></div>
-    <div class="img i3"></div>
-    <div class="img i4"></div>
+<div class="screen" id="s3">
+  <div class="card glass">
+    <h2>Har color tumhari yaad 💖</h2>
+    <div class="photo-stack">
+      <img src="assets/img1.jpg">
+      <img src="assets/img2.jpg">
+    </div>
+    <button onclick="next()">Continue ➜</button>
   </div>
-</section>
+</div>
 
-<!-- ===== FOOTER ===== -->
-<footer>
-  <p>Made with ❤️ for Holi</p>
-</footer>
+<div class="screen" id="s4">
+  <div class="card glass flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-inner">
+      <div class="flip-front">
+        <h2>Tap to Open 💌</h2>
+      </div>
+      <div class="flip-back">
+        <p>
+        Jaise Holi ke colors bright hote hain,  
+        waise hi tum meri life ko bright kar dete ho.  
+        Happy Holi meri favorite person ❤️
+        </p>
+      </div>
+    </div>
+  </div>
+  <button onclick="next()">Last ➜</button>
+</div>
+
+<div class="screen" id="s5">
+  <div class="card glass">
+    <h2>Virtual Hug 🤗</h2>
+    <div class="hug-circle" id="hugCircle">Hold</div>
+    <p id="hugText"></p>
+  </div>
+</div>
+
+</div>
+
+<footer>Made with ❤️ by Yash</footer>
 
 <script src="script.js"></script>
 </body>
-</html>
+  </html>
